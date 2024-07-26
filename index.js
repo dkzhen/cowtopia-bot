@@ -5,6 +5,8 @@ const { claimOfflineProfit } = require("./func/ClaimOfflineProfit");
 const { checkValidToken, validateToken } = require("./func/CheckValidToken");
 const { buyAnimal } = require("./func/BuyAnimal");
 const { buyFactory } = require("./func/BuyFactory");
+const { configDotenv } = require("dotenv");
+configDotenv();
 
 // Schedule the task to run every hour on the hour
 claimMission();
