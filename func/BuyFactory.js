@@ -33,13 +33,13 @@ exports.buyFactory = async function () {
           }
         );
 
-        console.log("factory unlocked");
-        console.log(res.data.data);
+        console.log(`[ Factory ] : factory unlocked`);
       } else {
-        console.log("not enough money to unlock factory");
+        console.log(`[ Factory ] : not enough money to unlock factory`);
+        console.log("");
       }
     } catch (error) {
-      console.log("error from unlock factory", error.message);
+      console.log(`[ Error ] : unlock factory failed`);
     }
   }
 };

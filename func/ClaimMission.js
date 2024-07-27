@@ -10,7 +10,7 @@ const CLAIM_API_URL = "https://cowtopia-be.tonfarmer.com/mission/check";
 exports.claimMission = async function () {
   try {
     const tokens = await validateToken();
-    // Loop through each token and make a GET request
+    if (tokens.length < 1) return null;
     for (const token of tokens) {
       try {
         const response = await axios.get(API_URL, {
@@ -19,9 +19,8 @@ exports.claimMission = async function () {
           },
         });
 
-        const missions = response.data.data; // Assuming missions data is in response.data.data
+        const missions = response.data.data;
 
-        // Loop through each mission and make API requests
         for (const mission of missions.missions) {
           if (!mission.completed) {
             try {
@@ -37,22 +36,20 @@ exports.claimMission = async function () {
               });
 
               console.log(
-                `Claimed mission ${mission.key}. Response status: ${claimResponse.status}`
+                `[ Running   ] : Claimed ${mission.key} successfully. Response status: ${claimResponse.status} `
               );
-              console.log(claimResponse.data);
             } catch (error) {
-              console.error(
-                `Error claiming mission ${mission.key}:`,
-                error.response.status
-              );
+              console.log(`[ Error ] : Claim ${mission.key} failed`);
             }
+          } else {
+            console.log(`[ Completed ] : ${mission.key} completed`);
           }
         }
       } catch (error) {
-        console.error(`Error fetching missions data :`, error.response.status);
+        console.log(`Error fetching missions data :`, error.response.status);
       }
     }
   } catch (error) {
-    console.error("Error reading tokens file:", error);
+    console.log(`[ Error ] : Error token file `);
   }
 };

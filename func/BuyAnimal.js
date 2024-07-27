@@ -29,7 +29,7 @@ exports.buyAnimal = async function () {
         while (autoBuy) {
           if (purchaseCounter >= maxPurchases) {
             autoBuy = false;
-            console.log("Maximum purchases animal reached.");
+            console.log(`[ Animal ] : Maximum purchases animal reached`);
             await buyFactory();
           } else if (money >= factoriesIsAvailable[0].animal_cost) {
             const res = await axios.post(
@@ -47,15 +47,15 @@ exports.buyAnimal = async function () {
             console.log(res.data.data);
             purchaseCounter++;
           } else {
-            console.log("money not enough to buy animal");
+            console.log(`[ Animal ] : money not enough to buy animal`);
             autoBuy = false;
           }
         }
       } else {
-        console.log("no factories available");
+        console.log(`[ Factory ] : no factories available`);
       }
     } catch (error) {
-      console.log("error from buy animal", error.message);
+      console.log(`[ Error ] : buy animal failed`);
     }
   }
 };

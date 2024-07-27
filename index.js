@@ -8,17 +8,21 @@ const { buyFactory } = require("./func/BuyFactory");
 const { configDotenv } = require("dotenv");
 configDotenv();
 
+async function main() {
+  await claimMission();
+  await claimOfflineProfit();
+  await buyAnimal();
+  console.log(`\n[ BOT ] : Task complete please wait 1 hour...\n`);
+}
 // Schedule the task to run every hour on the hour
-claimMission();
-claimOfflineProfit();
-buyAnimal();
+main();
 
 cron.schedule("0 * * * *", claimMission);
 cron.schedule("0 */3 * * *", claimOfflineProfit);
 cron.schedule("0 * * * *", buyAnimal);
 
 // Start the server
-const port = process.env.PORT || 105;
+const port = process.env.PORT || 103;
 const app = express();
 
 app.get("/", (req, res) => {

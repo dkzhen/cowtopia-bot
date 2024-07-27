@@ -22,10 +22,10 @@ exports.claimOfflineProfit = async function () {
       });
 
       console.log(
-        `Claimed offline reward succesfully. Response status: ${claimResponse.status}`
+        `[ Running   ] : Claimed offline reward successfully. Profit: ${claimResponse.data.data.profit} `
       );
     } catch (error) {
-      console.error(`Error claiming offline rewards`);
+      console.log(`[ Error ] : Claim offline reward failed`);
     }
   }
 };
