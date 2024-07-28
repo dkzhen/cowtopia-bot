@@ -23,7 +23,7 @@ exports.buyFactory = async function () {
       const money = res.data.data.user.money;
 
       if (money >= factoriesIsAvailable[0].unlockCost) {
-        const res = await axios.post(
+        await axios.post(
           API_BUY_FACTORY,
           {},
           {

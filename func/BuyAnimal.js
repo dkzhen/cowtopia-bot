@@ -32,7 +32,7 @@ exports.buyAnimal = async function () {
             console.log(`[ Animal ] : Maximum purchases animal reached`);
             await buyFactory();
           } else if (money >= factoriesIsAvailable[0].animal_cost) {
-            const res = await axios.post(
+            await axios.post(
               API_BUY_ANIMAL,
               {
                 factory_id: factoriesIsAvailable[0].factory_id,
@@ -44,7 +44,7 @@ exports.buyAnimal = async function () {
               }
             );
 
-            console.log(res.data.data);
+            console.log(`[ Animal ] : Buy Animal Successfully`);
             purchaseCounter++;
           } else {
             console.log(`[ Animal ] : money not enough to buy animal`);
@@ -52,7 +52,8 @@ exports.buyAnimal = async function () {
           }
         }
       } else {
-        console.log(`[ Factory ] : no factories available`);
+        console.log(`[ Factory ] : The facotory is full`);
+        await buyFactory();
       }
     } catch (error) {
       console.log(`[ Error ] : buy animal failed`);
