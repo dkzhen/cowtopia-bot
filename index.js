@@ -7,13 +7,13 @@ const { claimFarming } = require("./func/claimFarming");
 const { playGame } = require("./func/playgame");
 configDotenv();
 
-// DailyCheckIn();
-// claimFarming();
+DailyCheckIn();
+claimFarming();
 playGame();
 
-// cron.schedule("0 * * * *", DailyCheckIn);
-// cron.schedule("0 * * * *", claimFarming);
-// cron.schedule("0 * * * *", playGame);
+cron.schedule("0 * * * *", DailyCheckIn);
+cron.schedule("0 * * * *", claimFarming);
+cron.schedule("0 * * * *", playGame);
 
 // Start the server
 const port = process.env.PORT || 103;
